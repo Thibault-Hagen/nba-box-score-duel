@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Box Score Duel</title>
+<meta name="description" content="Compare any two NBA players after every game, using free public box scores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <div>
+      <h1>Box Score <span>Duel</span></h1>
+      <p class="sub" id="status">Loading box scores…</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="night" aria-labelledby="night-h">
+    <div class="section-head">
+      <h2 id="night-h">Game night</h2>
+      <div class="dates" id="dates" role="tablist" aria-label="Game dates"></div>
+    </div>
+    <div class="games" id="games"></div>
+    <div class="board-wrap">
+      <table class="board" id="board">
+        <caption class="sr">Top performers by Game Score</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="rk">#</th>
+            <th scope="col" class="pl">Player</th>
+            <th scope="col" title="Hollinger Game Score">GmSc</th>
+            <th scope="col">PTS</th><th scope="col">REB</th><th scope="col">AST</th>
+            <th scope="col" class="hide-sm">FG</th><th scope="col" class="hide-sm">3PT</th>
+            <th scope="col" class="hide-sm">+/-</th>
+            <th scope="col" class="act"><span class="sr">Compare</span></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button class="more" id="more" type="button">Show all players</button>
+  </section>
+
+  <section class="duel" aria-labelledby="duel-h">
+    <div class="section-head">
+      <h2 id="duel-h">Head to head</h2>
+      <div class="seg" id="scope" role="radiogroup" aria-label="Compare over">
+        <button type="button" data-scope="night" role="radio">Selected night</button>
+        <button type="button" data-scope="last5" role="radio">Last 5</button>
+        <button type="button" data-scope="season" role="radio">Season</button>
+      </div>
+    </div>
+
+    <div class="slots">
+      <div class="slot" data-slot="a"></div>
+      <div class="vs" aria-hidden="true">vs</div>
+      <div class="slot" data-slot="b"></div>
+    </div>
+
+    <div class="compare" id="compare"></div>
+
+    <div class="trend">
+      <div class="trend-head">
+        <h3>Game by game</h3>
+        <label class="stat-pick">Stat
+          <select id="trendStat">
+            <option value="gs">Game Score</option>
+            <option value="pts">Points</option>
+            <option value="reb">Rebounds</option>
+            <option value="ast">Assists</option>
+            <option value="ts">True shooting %</option>
+            <option value="min">Minutes</option>
+            <option value="pm">Plus/minus</option>
+          </select>
+        </label>
+      </div>
+      <div class="chart" id="chart"></div>
+    </div>
+
+    <div class="logs" id="logs"></div>
+  </section>
+
+  <footer class="foot">
+    <p>Box scores from ESPN's public data feed, refreshed every 30 minutes on game nights. Game Score = PTS + 0.4·FGM − 0.7·FGA − 0.4·(FTA−FTM) + 0.7·OREB + 0.3·DREB + STL + 0.7·AST + 0.7·BLK − 0.4·PF − TOV. True shooting % = PTS ÷ (2 × (FGA + 0.44·FTA)).</p>
+  </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
